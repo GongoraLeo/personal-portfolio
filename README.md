@@ -3,8 +3,6 @@
 
 > Un portafolio de desarrollador web moderno, rápido y totalmente interactivo, construido como una Single-Page Application (SPA) para mostrar proyectos, un blog personal y un asistente de IA.
 
-![Captura de pantalla del Portafolio](https://picsum.photos/seed/readme/1200/600)
-*Una vista previa del diseño limpio y profesional de la página de inicio.*
 
 ## ✨ Características Principales
 
