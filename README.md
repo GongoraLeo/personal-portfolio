@@ -71,7 +71,25 @@ Para gestionar el contenido del sitio, puedes acceder al panel de administració
 
 Desde aquí puedes crear, editar y eliminar proyectos, testimonios y publicaciones del blog.
 
-> **Importante**: La autenticación actual es un **simulacro solo para fines de demostración**. La contraseña está visible en el código del frontend, lo cual **no es seguro** para un entorno de producción. En un proyecto real, se implementaría un sistema de autenticación seguro con un backend.
+### ⚠️ Aclaración de Seguridad para Producción
+
+La autenticación actual es un **simulacro inseguro, diseñado únicamente para desarrollo local**. La contraseña está escrita directamente en el código del frontend, lo que significa que cualquier persona puede verla inspeccionando los archivos de la página en su navegador.
+
+**Para un entorno de producción real, se implementaría un sistema de autenticación seguro de la siguiente manera:**
+
+1.  **Backend y Base de Datos**: Se crearía un servidor backend (usando tecnologías como Node.js, Python, etc.) conectado a una base de datos segura (como PostgreSQL, MongoDB, etc.).
+
+2.  **Hashing de Contraseñas**: Las contraseñas de los administradores **nunca** se guardarían en texto plano. En su lugar, se almacenarían como un "hash" criptográfico (un galimatías irreversible) en la base de datos.
+
+3.  **Flujo de Autenticación**:
+    *   El formulario de inicio de sesión enviaría el email y la contraseña al backend de forma segura (HTTPS).
+    *   El backend buscaría al usuario por su email, aplicaría el mismo algoritmo de hash a la contraseña enviada y la compararía con el hash almacenado en la base de datos.
+    *   Si coinciden, el backend generaría un **token de sesión seguro** (por ejemplo, un JWT - JSON Web Token).
+
+4.  **Gestión de Sesión**:
+    *   Este token se devolvería al frontend, que lo almacenaría de forma segura (por ejemplo, en una cookie `httpOnly`).
+    *   Para cualquier acción administrativa (crear, editar, eliminar contenido), el frontend enviaría este token junto con la solicitud. El backend validaría el token antes de ejecutar la acción, asegurando que solo los usuarios autenticados puedan modificar el contenido.
+
 
 ## 📁 Estructura del Proyecto
 
